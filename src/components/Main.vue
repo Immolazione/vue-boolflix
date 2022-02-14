@@ -1,9 +1,18 @@
 <template>
 <main>
-    <div>
+  <section>
     <input type="text" v-model="searchText">
     <button type="button" @click="getFilms">Search</button>
-    </div>
+  </section>
+  <div v-if='(filmsFound.length == 0)'>CERCA UN TITOLO PER MOSTRARE I FILM</div>
+  <section id="film-results" v-else>
+    <ul v-for="(film, id) in filmsFound" :key="id">
+      <li><strong>Title:</strong> {{ film.title }}</li>
+      <li><strong>Original Title:</strong> {{ film.original_title }}</li>
+      <!-- <li><strong>Lingua:</strong> <img :src=></li> -->
+      <li><strong>Voto:</strong> {{ film.vote_average }}</li>
+    </ul>
+  </section>
 </main>
 </template>
 
@@ -23,13 +32,16 @@ export default {
       queryString: '',
     };
   },
-  
+
   methods: {
     getFilms(){
-      axios.get(`${this.baseUri}/search/movie?api_key=${this.apiKey}&language=it-IT&query=${this.searchText}`).then(res => {
+      axios.get(`${this.baseUri}${this.endPoint}?api_key=${this.apiKey}&language=${this.language}&query=${this.searchText}`).then(res => {
         console.log(res.data.results);
         this.filmsFound = res.data.results;
       });
+    },
+    getOriginalLanguage() {
+      
     },
   },
 };  
