@@ -2,15 +2,19 @@
 <main>
     <div>
     <input type="text" v-model="searchText">
-    <button type="button" @click="getMovie">Search</button>
+    <button type="button">Search</button>
     </div>
 </main>
 </template>
 
 <script>
 export default {
-    name: 'Main.vue',
-    searchText: "",
+    name: 'Main',
+    data(){
+        return {
+            searchText: "",
+        }
+    }
 }
 </script>
 
