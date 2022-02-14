@@ -1,18 +1,22 @@
 <template>
 <main>
+
   <section>
     <input type="text" v-model="searchText">
-    <button type="button" @click="getFilms">Search</button>
+    <button type="button" v-if="searchText" @click="getFilms">Search</button>
   </section>
+
   <div v-if='(filmsFound.length == 0)'>CERCA UN TITOLO PER MOSTRARE I FILM</div>
+
   <section id="film-results" v-else>
     <ul v-for="(film, id) in filmsFound" :key="id">
       <li><strong>Title:</strong> {{ film.title }}</li>
       <li><strong>Original Title:</strong> {{ film.original_title }}</li>
-      <!-- <li><strong>Lingua:</strong> <img :src=></li> -->
+      <li><strong>Lingua:</strong> <img v-if="film.original_language == 'en' || film.original_language == 'it'" :src="require(`../assets/img/${film.original_language}.png`)" /></li>
       <li><strong>Voto:</strong> {{ film.vote_average }}</li>
     </ul>
   </section>
+
 </main>
 </template>
 
@@ -40,13 +44,13 @@ export default {
         this.filmsFound = res.data.results;
       });
     },
-    getOriginalLanguage() {
-      
-    },
   },
 };  
 </script>
 
 <style lang="scss">
+li img {
+  width: 30px;
+}
 
 </style>
