@@ -3,13 +3,20 @@
       <li><img id="card-bg" :src="getImage" :alt="item.title || item.name"></li>
       <li><strong>Title: </strong>{{item.title || item.name}}</li>
       <li><strong>Original Title: </strong>{{item.original_title || item.original_name}}</li>
-      <li><strong>Language: </strong><img
-      id="card-lang"
-      v-if="hasFlag"
-      :src="require(`../assets/img/${item.original_language}.png`)" 
-      :alt="item.original_language" />
+
+      <li v-if="hasFlag"><strong>Language: </strong><img
+        id="card-lang"
+        :src="require(`../assets/img/${item.original_language}.png`)" 
+        :alt="item.original_language" />
       </li>
-      <li><strong>Voto: </strong></li>
+
+      <li><strong>Voto: </strong><i
+        v-for="n in 5"
+        :key="n"
+        class="far fa-star"
+        :class="{'fas' :(n <= getVote)}">
+      </i></li>
+
   </ul>
 </template>
 
@@ -34,8 +41,11 @@ export default {
         getVote(){
             return Math.ceil(this.item.vote_average / 2);
         },
-        // hasFlag() {
-        //     return (this.languages.includes(this.item.original_language)) ? true : false;
+        hasFlag() {
+            return (!(this.item.original_language == 'en' || this.item.original_language == 'it' )) ? false : true;
+        }
+        // hasFlag() { NON VA E NON SO PERCHè AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        //     return (this.languages.includes(this.item.original_language)) ? false : true;
         // }
     },
 }
