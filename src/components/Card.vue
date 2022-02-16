@@ -5,10 +5,11 @@
       <li><strong>Original Title: </strong>{{item.original_title || item.original_name}}</li>
       <li><strong>Language: </strong><img
       id="card-lang"
+      v-if="hasFlag"
       :src="require(`../assets/img/${item.original_language}.png`)" 
       :alt="item.original_language" />
       </li>
-      <li><strong>Voto: </strong><font-awesome-icon v-for="n in 5" :key="n" icon="fa-regular fa-star" /></li>
+      <li><strong>Voto: </strong></li>
   </ul>
 </template>
 
@@ -16,6 +17,7 @@
 export default {
     name: 'Card',
     props: ['items', 'title', 'item'],
+    languages: ['en', 'it'],
     data() {
         return{
             images: {
@@ -31,9 +33,9 @@ export default {
         },
         getVote(){
             return Math.ceil(this.item.vote_average / 2);
-        }
+        },
         // hasFlag() {
-
+        //     return (this.languages.includes(this.item.original_language)) ? true : false;
         // }
     },
 }
