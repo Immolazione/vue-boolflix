@@ -3,7 +3,7 @@
   <header>
     <Search @search="searchItem" :placeholder="'Cerca un film...'" />
   </header>
-  <Main />
+  <Main :movies="movies" :series="series" :imgUrl="imgUrl" />
 </div>
 </template>
 
@@ -26,6 +26,7 @@ export default {
     return {
       movies: [],
       series: [],
+      imgUrl: 'https://image.tmdb.org/t/p/',
       api: {
         baseUri: 'https://api.themoviedb.org/3',
         key: '0d07b420b3a9f7101c92e8e8e3e0ee15',
@@ -36,6 +37,12 @@ export default {
 
   methods: {
     searchItem(term){
+      if(!term){
+        this.movies = [];
+        this.series = [];
+        return;
+      }
+
       const { key, baseUri, language } = this.api;
 
       const config = {
@@ -50,6 +57,12 @@ export default {
         this.movies = res.data.results;
         console.log(this.movies)
       });
+
+      axios.get(`${baseUri}/search/tv`, config).then(res => {
+        this.series = res.data.results;
+        console.log(this.series)
+      });
+
     },
   },
 }

@@ -1,7 +1,7 @@
 <template>
 <main>
-  <Movies />
-  <Series />
+  <Movies :movies="movies" :imgUrl="imgUrl" />
+  <Series :series="series" :imgUrl="imgUrl" />
 </main>
 </template>
 
@@ -14,7 +14,8 @@ export default {
   components: {
     Movies,
     Series,
-  },  
+  },
+  props: ['movies', 'series', 'imgUrl']
 };  
 </script>
 
