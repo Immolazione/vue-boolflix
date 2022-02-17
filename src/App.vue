@@ -1,7 +1,8 @@
 <template>
 <div>
-  <header>
-    <Search @search="searchItem" :placeholder="'Cerca un film...'" />
+  <header class="d-flex justify-content-between align-items-center">
+    <h1 class="text-danger ps-4">BOOLFLIX</h1>
+    <Search class="pe-4" @search="searchItem" :placeholder="'Cerca un film...'" />
   </header>
   <Main :movies="movies" :series="series" />
 </div>
@@ -11,8 +12,6 @@
 import Search from './components/Search.vue'
 import Main from './components/Main.vue';
 import axios from 'axios';
-
-
 
 export default {
   name: 'App',
@@ -68,4 +67,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import './assets/scss/style.scss';
+
+header {
+  height: 100px;
+  width: 100%;
+  background-color: #000;
+}
 </style>

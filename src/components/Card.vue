@@ -1,21 +1,21 @@
 <template>
   <ul>
-      <li><img id="card-bg" :src="getImage" :alt="item.title || item.name"></li>
-      <li><strong>Title: </strong>{{item.title || item.name}}</li>
-      <li><strong>Original Title: </strong>{{item.original_title || item.original_name}}</li>
+    <li><img id="card-bg" :src="getImage" :alt="item.title || item.name"></li>
+    <li><strong>Title: </strong>{{item.title || item.name}}</li>
+    <li><strong>Original Title: </strong>{{item.original_title || item.original_name}}</li>
 
-      <li v-if="hasFlag"><strong>Language: </strong><img
+    <li v-if="hasFlag"><strong>Language: </strong><img
         id="card-lang"
         :src="require(`../assets/img/${item.original_language}.png`)" 
         :alt="item.original_language" />
-      </li>
+    </li>
 
-      <li><strong>Voto: </strong><i
+    <li><strong>Voto: </strong><i
         v-for="n in 5"
         :key="n"
         class="far fa-star"
         :class="{'fas' :(n <= getVote)}">
-      </i></li>
+    </i></li>
 
   </ul>
 </template>
