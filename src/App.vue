@@ -1,10 +1,13 @@
 <template>
 <div>
-  <header class="d-flex justify-content-between align-items-center">
-    <h1 class="text-danger ps-4">BOOLFLIX</h1>
-    <Search class="pe-4" @search="searchItem" :placeholder="'Cerca un film...'" />
-  </header>
-  <Main :movies="movies" :series="series" />
+  <div class="bg">
+
+    <header class="d-flex justify-content-between align-items-center container">
+      <h1 class="text-danger">BOOLFLIX</h1>
+      <Search @search="searchItem" :placeholder="'Cerca un film...'" />
+    </header>
+  </div>
+  <Main :movies="movies" :series="series" class="container" />
 </div>
 </template>
 
@@ -69,9 +72,12 @@ export default {
 <style lang="scss">
 @import './assets/scss/style.scss';
 
-header {
+.bg {
+  background-color: #000;
+  header {
   height: 100px;
   width: 100%;
-  background-color: #000;
+
+  }
 }
 </style>

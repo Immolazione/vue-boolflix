@@ -1,23 +1,27 @@
 <template>
-  <ul>
-    <li><img id="card-bg" :src="getImage" :alt="item.title || item.name"></li>
-    <li><strong>Title: </strong>{{item.title || item.name}}</li>
-    <li><strong>Original Title: </strong>{{item.original_title || item.original_name}}</li>
+<section :style="{
+    backgroundImage: `url(${getImage})`, 
+    backgroundRepeat: 'no-repeat',}">
+    <!-- <img id="card-bg" :src="getImage" :alt="item.title || item.name"> -->
+    <ul>
+        <li><strong>Title: </strong>{{item.title || item.name}}</li>
+        <li><strong>Original Title: </strong>{{item.original_title || item.original_name}}</li>
 
-    <li v-if="hasFlag"><strong>Language: </strong><img
-        id="card-lang"
-        :src="require(`../assets/img/${item.original_language}.png`)" 
-        :alt="item.original_language" />
-    </li>
+        <li v-if="hasFlag"><strong>Language: </strong><img
+            id="card-lang"
+            :src="require(`../assets/img/${item.original_language}.png`)" 
+            :alt="item.original_language" />
+        </li>
 
-    <li><strong>Voto: </strong><i
-        v-for="n in 5"
-        :key="n"
-        class="far fa-star"
-        :class="{'fas' :(n <= getVote)}">
-    </i></li>
+        <li><strong>Voto: </strong><i
+            v-for="n in 5"
+            :key="n"
+            class="far fa-star"
+            :class="{'fas' :(n <= getVote)}">
+        </i></li>
 
-  </ul>
+    </ul>
+</section>
 </template>
 
 <script>
@@ -29,8 +33,8 @@ export default {
         return{
             images: {
             placeholder: 'https://www.altavod.com/assets/images/poster-placeholder.png',
-            imgUrl: 'https://image.tmdb.org/t/p/w92',
-            }
+            imgUrl: 'https://image.tmdb.org/t/p/w342',
+            },
         }
     },
     computed: {
@@ -43,6 +47,11 @@ export default {
         },
         hasFlag() {
             return (!(this.item.original_language == 'en' || this.item.original_language == 'it' )) ? false : true;
+        },
+        bgImage(){
+            return {
+                backgroundImage: this.images.imgUrl + this.item.poster_path,
+            }
         }
         // hasFlag() { NON VA E NON SO PERCHè AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         //     return (this.languages.includes(this.item.original_language)) ? false : true;
@@ -52,6 +61,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section {
     ul{
         li{
             #card-bg {
@@ -62,4 +72,5 @@ export default {
             }
         }
     }
+}
 </style>
