@@ -1,7 +1,9 @@
 <template>
 <main>
-  <Results :items="movies" title="Movies" />
-  <Results :items="series" title="Series" />
+  <div class="container">
+    <Results :items="movies" title="Movies" class="mb-5" />
+    <Results :items="series" title="Series" />
+  </div>
 </main>
 </template>
 
@@ -18,5 +20,8 @@ export default {
 </script>
 
 <style lang="scss">
+main {
+  background-color: #3B3B3B;
+}
 
 </style>

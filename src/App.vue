@@ -7,7 +7,7 @@
       <Search @search="searchItem" :placeholder="'Cerca un film...'" />
     </header>
   </div>
-  <Main :movies="movies" :series="series" class="container" />
+  <Main :movies="movies" :series="series" />
 </div>
 </template>
 

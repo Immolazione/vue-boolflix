@@ -1,7 +1,11 @@
 <template>
 <section :style="{
     backgroundImage: `url(${getImage})`, 
-    backgroundRepeat: 'no-repeat',}">
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    height: '500px',
+    margin: '10px 20px'}">
     <!-- <img id="card-bg" :src="getImage" :alt="item.title || item.name"> -->
     <ul>
         <li><strong>Title: </strong>{{item.title || item.name}}</li>
@@ -33,7 +37,7 @@ export default {
         return{
             images: {
             placeholder: 'https://www.altavod.com/assets/images/poster-placeholder.png',
-            imgUrl: 'https://image.tmdb.org/t/p/w342',
+            imgUrl: 'https://image.tmdb.org/t/p/original',
             },
         }
     },
@@ -62,7 +66,13 @@ export default {
 
 <style lang="scss" scoped>
 section {
+    *{
+        color: white;
+        font-size: 1.5rem;
+        padding: 0 0.2rem;
+    }
     ul{
+        list-style-type: none;
         li{
             #card-bg {
                 max-width: 92px;

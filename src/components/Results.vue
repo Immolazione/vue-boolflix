@@ -1,7 +1,7 @@
 <template>
-  <section v-if="items.length">
-    <h1>{{ title }}: </h1>
-    <Card :item="item" v-for="item in items" :key="item.id" />
+  <section v-if="items.length" class="row g-0 d-flex justify-content-center">
+    <h1 class="text-white">{{ title }}: </h1>
+    <Card :item="item" v-for="item in items" :key="item.id" class="col-3" />
   </section>
 </template>
 
